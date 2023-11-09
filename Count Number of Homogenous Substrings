@@ -1,0 +1,24 @@
+class Solution {
+public:
+    const long long MOD=1e9+7;
+    int countHomogenous(string s) {
+        int n=s.size();
+        if(n==0){
+            return 0;
+        }
+        char c=s[0];
+        int l=1; // l is length of homogenous substring 
+        int count=0;
+        for(int i=1;i<n;i++){
+            if(s[i]==c){
+                l++;
+            }else{
+                count=(count+((long long)l*(l+1)/2))%MOD;
+                c=s[i];
+                l=1;
+            }
+        }
+        count=(count+(long long)l*(l+1)/2)%MOD;
+        return count%MOD;
+    }
+};
